@@ -1,0 +1,313 @@
+.char-card-portrait {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    flex-shrink: 0;
+}
+
+.char-card-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%);
+    transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+.char-card:hover .char-card-portrait img {
+    filter: grayscale(0%);
+    transform: scale(1.04);
+}
+
+.char-card-portrait-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 70%);
+    border-color: var(--accent, rgba(201, 168, 76, 0.2));
+}
+
+.char-card-portrait-fallback span {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.6rem;
+    color: var(--accent, var(--gold));
+    opacity: 0.6;
+}
+
+.char-stats {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 24px;
+}
+
+.char-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+}
+
+.char-filter-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ash);
+    background: transparent;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 999px;
+    padding: 9px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.char-filter-btn:hover {
+    color: var(--accent, var(--gold-light));
+    border-color: var(--accent, var(--gold));
+}
+
+.char-filter-btn.active {
+    color: var(--ink);
+    background: var(--accent, var(--gold));
+    border-color: var(--accent, var(--gold));
+}
+
+.char-filter-count {
+    font-size: 0.62rem;
+    opacity: 0.65;
+}
+
+
+/* Single-column stack of horizontal cards */
+
+.char-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@keyframes char-card-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.char-card {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.02), transparent 60%);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    opacity: 0;
+    animation: char-card-in 0.55s ease forwards;
+    animation-delay: calc(var(--i, 0) * 0.07s);
+}
+
+
+/* Faint accent tint wash over the whole card */
+
+.char-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent, var(--gold));
+    opacity: 0.045;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+/* Oversized faint house sigil watermark, bottom-right */
+
+.char-card::after {
+    content: attr(data-sigil);
+    position: absolute;
+    right: 6px;
+    bottom: -22px;
+    font-size: 7.5rem;
+    line-height: 1;
+    color: var(--accent, var(--gold));
+    opacity: 0.07;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.char-card:hover {
+    border-color: var(--accent, var(--gold));
+    transform: translateY(-4px);
+}
+
+.char-card:hover::before {
+    opacity: 0.08;
+}
+
+
+/* Portrait column: fixed-ish width on the left */
+
+.char-card .char-card-portrait {
+    width: 280px;
+    aspect-ratio: auto;
+    border: none;
+    border-right: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+
+/* Alternating layout: flip portrait to the right on odd cards */
+
+.char-card.reverse {
+    flex-direction: row-reverse;
+}
+
+.char-card.reverse .char-card-portrait {
+    border-right: none;
+    border-left: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+
+/* Details column: everything else on the right */
+
+.char-card-details {
+    flex: 1;
+    min-width: 0;
+    padding: 30px 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.char-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.char-card-house {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent, var(--gold));
+}
+
+.char-card-glyph {
+    color: var(--accent, var(--gold));
+    opacity: 0.6;
+}
+
+.char-card-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.6rem;
+    color: var(--parchment);
+    margin-bottom: 4px;
+}
+
+.char-card-title {
+    font-size: 0.9rem;
+    color: var(--ash);
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+.char-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-bottom: 18px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(201, 168, 76, 0.12);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+}
+
+.char-card-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.char-card-meta-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent, var(--gold));
+    opacity: 0.75;
+}
+
+.char-card-meta-value {
+    font-size: 0.85rem;
+    color: var(--parchment);
+}
+
+.char-card-quote {
+    position: relative;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 0.95rem;
+    border-left: 2px solid var(--accent, var(--gold-dim));
+    padding-left: 12px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.char-card-quote::before {
+    content: '\201C';
+    position: absolute;
+    left: 4px;
+    top: -22px;
+    font-family: Georgia, serif;
+    font-size: 3.2rem;
+    color: var(--accent, var(--gold));
+    opacity: 0.18;
+    z-index: -1;
+}
+
+.char-card-bio {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--ash);
+}
+
+
+/* Responsive: stack image on top for narrow screens */
+
+@media (max-width: 720px) {
+    .char-card,
+    .char-card.reverse {
+        flex-direction: column;
+    }
+    .char-card .char-card-portrait,
+    .char-card.reverse .char-card-portrait {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+    .char-card-details {
+        padding: 24px 22px;
+    }
+    .char-card::after {
+        font-size: 5rem;
+    }
+}

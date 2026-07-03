@@ -1,0 +1,174 @@
+.realm-layout {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.realm-map {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 76px);
+    gap: 6px;
+    grid-template-areas: "north north north" "iron  river vale" "west  crown vale" "west  reach storm" ".     dorne dorne";
+}
+
+.realm-tile {
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--ash);
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6px;
+    transition: all 0.25s ease;
+}
+
+.realm-tile:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.realm-tile.active {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.realm-north {
+    grid-area: north;
+}
+
+.realm-iron {
+    grid-area: iron;
+}
+
+.realm-vale {
+    grid-area: vale;
+}
+
+.realm-river {
+    grid-area: river;
+}
+
+.realm-west {
+    grid-area: west;
+}
+
+.realm-crown {
+    grid-area: crown;
+}
+
+.realm-reach {
+    grid-area: reach;
+}
+
+.realm-storm {
+    grid-area: storm;
+}
+
+.realm-dorne {
+    grid-area: dorne;
+}
+
+.realm-panel {
+    position: sticky;
+    top: 120px;
+    padding: 0;
+    border: 1px solid var(--accent);
+    background: rgba(255, 255, 255, 0.02);
+    overflow: hidden;
+}
+
+.realm-panel-image {
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-bottom: 1px solid var(--accent);
+}
+
+.realm-panel-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 7, 5, 0.9), transparent 60%);
+}
+
+.realm-panel-body {
+    padding: 26px 26px 30px;
+}
+
+.realm-panel-eyebrow {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.realm-panel-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.6rem;
+    color: var(--parchment);
+    margin-bottom: 14px;
+}
+
+.realm-panel-desc {
+    color: var(--ash);
+    line-height: 1.8;
+    font-size: 0.94rem;
+    margin-bottom: 20px;
+}
+
+.realm-panel-line {
+    height: 1px;
+    background: rgba(201, 168, 76, 0.25);
+    margin-bottom: 20px;
+}
+
+.realm-panel-hint {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--gold-dim);
+    line-height: 1.6;
+}
+
+.realm-panel-link {
+    display: inline-block;
+    margin-top: 4px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 3px;
+    transition: opacity 0.25s ease;
+}
+
+.realm-panel-link:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 860px) {
+    .realm-layout {
+        grid-template-columns: 1fr;
+    }
+    .realm-map {
+        grid-template-rows: repeat(5, 64px);
+    }
+    .realm-panel {
+        position: static;
+    }
+}

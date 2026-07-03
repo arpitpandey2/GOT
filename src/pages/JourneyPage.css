@@ -1,0 +1,79 @@
+.journey-lede {
+  max-width: 640px;
+  margin: 0 auto 64px;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--ash);
+}
+
+.journey-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.journey-path {
+  position: relative;
+  display: block;
+  padding: 34px 28px 30px;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  background: linear-gradient(160deg, rgba(255,255,255,0.02), transparent 70%);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: journey-in 0.6s ease forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+@keyframes journey-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.journey-path:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  background: linear-gradient(160deg, rgba(201,168,76,0.06), transparent 70%);
+}
+
+.journey-path-sigil {
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.journey-path-label {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.25rem;
+  color: var(--parchment);
+  margin-bottom: 12px;
+}
+
+.journey-path-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ash);
+  margin-bottom: 20px;
+}
+
+.journey-path-arrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.journey-quote {
+  margin-top: 80px;
+  text-align: center;
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
