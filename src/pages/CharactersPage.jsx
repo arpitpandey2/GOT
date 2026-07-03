@@ -11,7 +11,7 @@ const CHARACTERS = [
     accent: '#8fafc4',
     quote: '"I did not want this. Any of it."',
     bio: 'Raised as a bastard of Winterfell, sworn to the Wall, and torn between duty and blood. Jon carries the weight of two houses without fully belonging to either.',
-    image: '/photos/jonsnow.avif',
+    image: '/photos/jonsnow.jpg',
   },
   {
     name: 'Arya Stark',
