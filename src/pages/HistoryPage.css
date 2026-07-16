@@ -1,0 +1,473 @@
+/* ─────────────────────────────────────────────────────────────────
+   THE CHRONICLES OF WESTEROS — page-level styling
+   Layout: sticky era sidebar (desktop) / horizontal strip (mobile)
+   next to a long scroll of full era sections, each its own mini-page.
+   ───────────────────────────────────────────────────────────────── */
+
+.chronicles-content {
+  padding-top: 0;
+}
+
+.chronicles-stats {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  padding: 28px 24px 0;
+}
+
+.chronicles-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  align-items: start;
+}
+
+/* ── Sidebar nav (desktop) ─────────────────────────────────── */
+.chronicle-nav {
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.chronicle-nav::-webkit-scrollbar { width: 4px; }
+.chronicle-nav::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.25); border-radius: 4px; }
+
+.chronicle-nav-label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 14px;
+  padding-left: 14px;
+}
+
+.chronicle-nav ol {
+  list-style: none;
+  border-left: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+.chronicle-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chronicle-nav-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.66rem;
+  color: var(--gold-dim);
+  flex-shrink: 0;
+}
+
+.chronicle-nav-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  color: var(--ash);
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.chronicle-nav-btn:hover .chronicle-nav-name {
+  color: var(--gold-light);
+}
+
+.chronicle-nav-btn.active {
+  border-left-color: var(--gold);
+}
+
+.chronicle-nav-btn.active .chronicle-nav-name {
+  color: var(--gold-light);
+}
+
+.chronicle-nav-btn.active .chronicle-nav-num {
+  color: var(--gold);
+}
+
+/* ── Mobile horizontal nav strip ───────────────────────────── */
+.chronicle-nav-mobile {
+  display: none;
+}
+
+/* ── Era sections ───────────────────────────────────────────── */
+.chronicles-eras {
+  min-width: 0;
+}
+
+.era-section {
+  scroll-margin-top: 90px;
+  margin-bottom: 96px;
+  padding-top: 8px;
+}
+
+.era-section:not(:first-child) {
+  border-top: 1px solid rgba(201, 168, 76, 0.14);
+  padding-top: 64px;
+}
+
+/* ── Era banner (stand-in "illustration") ──────────────────── */
+.era-banner {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 56px 24px 44px;
+  margin-bottom: 40px;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 65%),
+    linear-gradient(160deg, rgba(201,168,76,0.05), transparent 60%),
+    var(--ink-soft);
+}
+
+.era-banner-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.era-banner-number {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.1em;
+}
+
+.era-banner-sigil {
+  position: relative;
+  display: block;
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+}
+
+.era-banner-name {
+  position: relative;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--gold-light);
+  margin-bottom: 8px;
+}
+
+.era-banner-date {
+  position: relative;
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 16px;
+}
+
+.era-banner-tagline {
+  position: relative;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ash);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Shared block styling ──────────────────────────────────── */
+.era-body {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.era-block-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+}
+
+/* ── Overview ───────────────────────────────────────────────── */
+.era-overview p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--white-mist);
+  margin-bottom: 16px;
+}
+
+.era-overview p:last-child { margin-bottom: 0; }
+
+/* ── Timeline (per-era, compact list not the old spine layout) ── */
+.era-timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.era-timeline-item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+}
+
+.era-timeline-year {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--gold-dim);
+  padding-top: 2px;
+}
+
+.era-timeline-content h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.98rem;
+  color: var(--parchment);
+  margin-bottom: 4px;
+}
+
+.era-timeline-content p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ash);
+}
+
+/* ── Major figures ──────────────────────────────────────────── */
+.era-figure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.era-figure-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 6px;
+  padding: 18px;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(201, 168, 76, 0.16);
+  cursor: pointer;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.era-figure-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.era-figure-initial {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1rem;
+  color: var(--gold-light);
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  margin-bottom: 4px;
+}
+
+.era-figure-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--parchment);
+}
+
+.era-figure-title {
+  font-size: 0.74rem;
+  font-style: italic;
+  color: var(--gold-dim);
+}
+
+.era-figure-blurb {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ash);
+  margin-top: 2px;
+}
+
+/* ── Houses & locations (chip rows) ────────────────────────── */
+.era-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.era-chip {
+  font-family: 'Cinzel', serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  color: var(--ash);
+  cursor: default;
+  transition: all 0.2s ease;
+}
+
+.era-chip:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  background: rgba(201, 168, 76, 0.06);
+}
+
+.era-empty-note {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ash);
+}
+
+/* ── Battles ────────────────────────────────────────────────── */
+.era-battle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.era-battle-card {
+  padding: 20px;
+  background: rgba(139, 26, 26, 0.05);
+  border: 1px solid rgba(139, 26, 26, 0.28);
+}
+
+.era-battle-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+}
+
+.era-battle-card dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+}
+
+.era-battle-card dt {
+  font-family: 'Cinzel', serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.era-battle-card dd {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ash);
+  margin-bottom: 6px;
+}
+
+/* ── Legacy callout ─────────────────────────────────────────── */
+.era-legacy {
+  position: relative;
+  padding: 28px 32px;
+  border-left: 3px solid var(--gold);
+  background: linear-gradient(90deg, rgba(201,168,76,0.06), transparent 70%);
+}
+
+.era-legacy-label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.era-legacy p {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--parchment);
+  font-style: italic;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .chronicles-layout {
+    grid-template-columns: 1fr;
+    padding-top: 12px;
+  }
+
+  .chronicle-nav {
+    display: none;
+  }
+
+  .chronicle-nav-mobile {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 0 24px 20px;
+    position: sticky;
+    top: 64px;
+    z-index: 20;
+    background: rgba(8, 6, 4, 0.96);
+    backdrop-filter: blur(4px);
+    margin: 0 -24px 20px;
+    padding-top: 14px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  }
+
+  .chronicle-nav-mobile-btn {
+    flex-shrink: 0;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    background: transparent;
+    color: var(--ash);
+    cursor: pointer;
+  }
+
+  .chronicle-nav-mobile-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  .era-timeline-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 560px) {
+  .era-banner { padding: 44px 18px 32px; }
+  .era-battle-card dl { grid-template-columns: 1fr; }
+  .era-battle-card dt { padding-top: 6px; }
+}
